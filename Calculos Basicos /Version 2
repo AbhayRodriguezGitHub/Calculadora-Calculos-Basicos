@@ -1,0 +1,157 @@
+VERSION 2:
+
+En esta version le agrego la opcion de los calculos con numeros ilimitados. En la anterior solo podias de 2, ahora con los que quieras.
+En esta version el DESIGN trabaje gran parte desde la consola y no todo con WindowBuilder como la Anterior version.
+
+package Grafico;
+
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CalculosBasicos extends JFrame {
+
+    private JPanel contentPane;
+    private JTextField txtPantalla;
+
+    // Variables
+    List<Double> numeros;
+    List<String> operaciones;
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    CalculosBasicos frame = new CalculosBasicos();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Create the frame.
+     */
+    public CalculosBasicos() {
+        numeros = new ArrayList<>();
+        operaciones = new ArrayList<>();
+
+        setTitle("CalculosBasicos");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 341, 332);
+        contentPane = new JPanel();
+        contentPane.setBackground(new Color(224, 255, 255));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        txtPantalla = new JTextField();
+        txtPantalla.setHorizontalAlignment(SwingConstants.RIGHT);
+        txtPantalla.setFont(new Font("Arial", Font.BOLD, 18));
+        txtPantalla.setBounds(10, 11, 300, 47);
+        contentPane.add(txtPantalla);
+        txtPantalla.setColumns(10);
+
+        // Listener común para botones numéricos
+        ActionListener numberListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String IngreseNumero = txtPantalla.getText() + ((JButton) e.getSource()).getText();
+                txtPantalla.setText(IngreseNumero);
+            }
+        };
+
+        // Creación de botones numéricos
+        String[] buttonLabels = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+        int[] buttonBounds = {
+            10, 69, 52, 47,   72, 69, 52, 47,   134, 69, 52, 47,
+            10, 122, 52, 47,  72, 122, 52, 47,  134, 122, 52, 47,
+            10, 178, 52, 47,  72, 178, 52, 47,  134, 178, 52, 47,
+            10, 236, 52, 47
+        };
+       
+        for (int i = 0; i < buttonLabels.length; i++) {
+            JButton button = new JButton(buttonLabels[i]);
+            button.addActionListener(numberListener);
+            button.setFont(new Font("Arial", Font.BOLD, 15));
+            button.setBounds(buttonBounds[i * 4], buttonBounds[i * 4 + 1], buttonBounds[i * 4 + 2], buttonBounds[i * 4 + 3]);
+            contentPane.add(button);
+        }
+
+        // Botones de operaciones
+        addButton("C", 196, 69, 114, 47, new Color(255, 0, 0), e -> txtPantalla.setText(""));
+        addButton("+", 196, 122, 52, 47, new Color(255, 0, 0), e -> setOperation("+"));
+        addButton("-", 258, 122, 52, 47, new Color(255, 0, 0), e -> setOperation("-"));
+        addButton("\u00D7", 196, 178, 52, 47, new Color(255, 0, 0), e -> setOperation("*"));
+        addButton("\u00F7", 258, 178, 52, 47, new Color(255, 0, 0), e -> setOperation("/"));
+        addButton("^", 196, 236, 52, 47, new Color(255, 0, 0), e -> setOperation("^"));
+        addButton("\u221A", 258, 236, 52, 47, new Color(255, 0, 0), e -> calculateSquareRoot());
+
+        // Botón igual
+        addButton("=", 72, 236, 114, 47, new Color(255, 0, 0), e -> calculateResult());
+    }
+
+    private void addButton(String text, int x, int y, int width, int height, Color color, ActionListener listener) {
+        JButton button = new JButton(text);
+        button.setForeground(color);
+        button.setFont(new Font("Arial", Font.BOLD, 15));
+        button.setBounds(x, y, width, height);
+        button.addActionListener(listener);
+        contentPane.add(button);
+    }
+
+    private void setOperation(String op) {
+        try {
+            numeros.add(Double.parseDouble(txtPantalla.getText()));
+            operaciones.add(op);
+            txtPantalla.setText("");
+        } catch (NumberFormatException e) {
+            txtPantalla.setText("Error");
+        }
+    }
+
+    private void calculateResult() {
+        try {
+            numeros.add(Double.parseDouble(txtPantalla.getText()));
+            double resultado = numeros.get(0);
+            for (int i = 0; i < operaciones.size(); i++) {
+                switch (operaciones.get(i)) {
+                    case "+": resultado += numeros.get(i + 1); break;
+                    case "-": resultado -= numeros.get(i + 1); break;
+                    case "*": resultado *= numeros.get(i + 1); break;
+                    case "/": resultado /= numeros.get(i + 1); break;
+                    case "^": resultado = Math.pow(resultado, numeros.get(i + 1)); break;
+                }
+            }
+            txtPantalla.setText(String.valueOf(resultado));
+            numeros.clear();
+            operaciones.clear();
+        } catch (NumberFormatException e) {
+            txtPantalla.setText("Error");
+        }
+    }
+
+    private void calculateSquareRoot() {
+        try {
+            double numero = Double.parseDouble(txtPantalla.getText());
+            double resultado = Math.sqrt(numero);
+            txtPantalla.setText(String.valueOf(resultado));
+        } catch (NumberFormatException e) {
+            txtPantalla.setText("Error");
+        }
+    }
+}
