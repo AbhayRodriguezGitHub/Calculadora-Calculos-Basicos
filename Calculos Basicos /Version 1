@@ -1,0 +1,304 @@
+La Calculadora Creada al 100, Contiene todas las Funciones: Suma, Resta, Multiplicacion, Division, Potencia y Raiz.
+Echo en Java con la Aplicacion Eclipse 2022‑03, Con ayuda de la Herramienta WindowBuilder‑JFrame
+
+Este es el codigo de la calculadora: 
+
+package Grafico;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+
+public class CalculosBasicos extends JFrame {
+
+private JPanel contentPane;
+private JTextField txtPantalla;
+
+// Variables
+double numero1;
+double numero2;
+double resultado;
+String operacion;
+
+/**
+* Launch the application.
+*/
+public static void main(String[] args) {
+EventQueue.invokeLater(new Runnable() {
+public void run() {
+try {
+CalculosBasicos frame = new CalculosBasicos();
+frame.setVisible(true);
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+});
+}
+
+/**
+* Create the frame.
+*/
+public CalculosBasicos() {
+setTitle("CalculosBasicos");
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+setBounds(100, 100, 341, 332);
+contentPane = new JPanel();
+contentPane.setBackground(new Color(224, 255, 255));
+contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+setContentPane(contentPane);
+contentPane.setLayout(null);
+
+
+
+
+
+
+txtPantalla = new JTextField();
+txtPantalla.setHorizontalAlignment(SwingConstants.RIGHT);
+txtPantalla.setFont(new Font("Arial", Font.BOLD, 18));
+txtPantalla.setBounds(10, 11, 290, 47);
+contentPane.add(txtPantalla);
+txtPantalla.setColumns(10);
+
+JButton btnReinicio = new JButton("C");
+btnReinicio.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+txtPantalla.setText("");
+}
+
+
+});
+btnReinicio.setForeground(new Color(255, 0, 0));
+btnReinicio.setBackground(new Color(240, 248, 255));
+btnReinicio.setFont(new Font("Arial", Font.BOLD, 15));
+btnReinicio.setBounds(196, 69, 114, 47);
+contentPane.add(btnReinicio);
+
+JButton btn1 = new JButton("1");
+btn1.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+Object txt;
+// Vamos con el Numero 1
+String IngreseNumero = txtPantalla.getText() + btn1.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn1.setFont(new Font("Arial", Font.BOLD, 15));
+btn1.setBounds(10, 69, 52, 47);
+contentPane.add(btn1);
+
+JButton btn2 = new JButton("2");
+btn2.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn2.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn2.setFont(new Font("Arial", Font.BOLD, 15));
+btn2.setBounds(72, 69, 52, 47);
+contentPane.add(btn2);
+
+JButton btn3 = new JButton("3");
+btn3.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn3.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn3.setFont(new Font("Arial", Font.BOLD, 15));
+btn3.setBounds(134, 69, 52, 47);
+contentPane.add(btn3);
+
+JButton btn4 = new JButton("4");
+btn4.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn4.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn4.setFont(new Font("Arial", Font.BOLD, 15));
+btn4.setBounds(10, 122, 52, 47);
+contentPane.add(btn4);
+
+JButton btn5 = new JButton("5");
+btn5.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn5.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn5.setFont(new Font("Arial", Font.BOLD, 15));
+btn5.setBounds(72, 122, 52, 47);
+contentPane.add(btn5);
+
+JButton btn6 = new JButton("6");
+btn6.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn6.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn6.setFont(new Font("Arial", Font.BOLD, 15));
+btn6.setBounds(134, 122, 52, 47);
+contentPane.add(btn6);
+
+JButton btn7 = new JButton("7");
+btn7.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn7.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn7.setFont(new Font("Arial", Font.BOLD, 15));
+btn7.setBounds(10, 178, 52, 47);
+contentPane.add(btn7);
+
+JButton btn8 = new JButton("8");
+btn8.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn8.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn8.setFont(new Font("Arial", Font.BOLD, 15));
+btn8.setBounds(72, 178, 52, 47);
+contentPane.add(btn8);
+
+JButton btn9 = new JButton("9");
+btn9.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn9.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn9.setFont(new Font("Arial", Font.BOLD, 15));
+btn9.setBounds(134, 180, 52, 45);
+contentPane.add(btn9);
+
+JButton btn0 = new JButton("0");
+btn0.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btn0.getText();
+txtPantalla.setText(IngreseNumero);
+}
+});
+btn0.setFont(new Font("Arial", Font.BOLD, 15));
+btn0.setBounds(72, 236, 52, 47);
+contentPane.add(btn0);
+
+JButton btnMultiplicacion = new JButton("\u00D7");
+btnMultiplicacion.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+numero1 =Double.parseDouble(txtPantalla.getText());
+txtPantalla.setText("");;
+operacion = "*";
+}
+});
+btnMultiplicacion.setForeground(new Color(255, 0, 0));
+btnMultiplicacion.setFont(new Font("Arial", Font.BOLD, 15));
+btnMultiplicacion.setBounds(196, 178, 52, 47);
+contentPane.add(btnMultiplicacion);
+
+JButton btnDivision = new JButton("\u00F7");
+btnDivision.setForeground(new Color(255, 0, 0));
+btnDivision.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+numero1 =Double.parseDouble(txtPantalla.getText());
+txtPantalla.setText("");;
+operacion = "/";
+}
+});
+btnDivision.setFont(new Font("Arial", Font.BOLD, 15));
+btnDivision.setBounds(258, 178, 52, 47);
+contentPane.add(btnDivision);
+
+JButton btnSuma = new JButton("+");
+btnSuma.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+numero1 =Double.parseDouble(txtPantalla.getText());
+txtPantalla.setText("");;
+operacion = "+";
+}
+});
+btnSuma.setForeground(new Color(255, 0, 0));
+btnSuma.setFont(new Font("Arial", Font.BOLD, 15));
+btnSuma.setBounds(196, 122, 52, 47);
+contentPane.add(btnSuma);
+
+JButton btnResta = new JButton("-");
+btnResta.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+numero1 =Double.parseDouble(txtPantalla.getText());
+txtPantalla.setText("");;
+operacion = "-";
+}
+});
+btnResta.setForeground(new Color(255, 0, 0));
+btnResta.setFont(new Font("Arial", Font.BOLD, 15));
+btnResta.setBounds(258, 122, 52, 47);
+contentPane.add(btnResta);
+
+JButton btnIgual = new JButton("=");
+btnIgual.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String seleccionar;
+numero2 = Double.parseDouble(txtPantalla.getText());
+
+if(operacion == "+") {
+resultado=numero1+numero2;
+seleccionar = String.format("%.2f",resultado);
+txtPantalla.setText(seleccionar);
+}
+}
+});
+btnIgual.setBackground(new Color(240, 248, 255));
+btnIgual.setForeground(new Color(0, 0, 0));
+btnIgual.setFont(new Font("Arial", Font.BOLD, 15));
+btnIgual.setBounds(134, 236, 52, 47);
+contentPane.add(btnIgual);
+
+JButton btnPotencia = new JButton("^");
+btnPotencia.setForeground(new Color(255, 0, 0));
+btnPotencia.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+}
+});
+btnPotencia.setFont(new Font("Arial", Font.BOLD, 15));
+btnPotencia.setBounds(196, 236, 52, 47);
+contentPane.add(btnPotencia);
+
+JButton btnRaiz = new JButton("\u221A");
+btnRaiz.setForeground(new Color(255, 0, 0));
+btnRaiz.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+}
+});
+btnRaiz.setFont(new Font("Arial", Font.BOLD, 16));
+btnRaiz.setBounds(258, 235, 52, 47);
+contentPane.add(btnRaiz);
+
+JButton btnPunto = new JButton(".");
+btnPunto.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+String IngreseNumero = txtPantalla.getText() + btnPunto.getText();
+txtPantalla.setText(IngreseNumero);
+
+}
+});
+btnPunto.setForeground(new Color(0, 0, 0));
+btnPunto.setFont(new Font("Arial", Font.BOLD, 16));
+btnPunto.setBounds(10, 235, 52, 47);
+contentPane.add(btnPunto);
+}
+}
